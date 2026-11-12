@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- WhatsApp / Open Graph Link Preview Meta Tags -->
-    <meta property="og:title" content="Daily & Weekly Digital Discipleship Rhythms" />
-    <meta property="og:description" content="A practical checklist for Christian parents to guide their children, establish healthy digital boundaries, and build faith at home." />
-    <meta property="og:image" content="family_image.jpg" />
-    <meta property="og:url" content="https://enrichministries.github.io/digital-discipleship-rhythms/" />
-    <meta property="og:type" content="website" />
-
-    <!-- Additional WhatsApp specific tag for large image preview -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="675" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily & Weekly Digital Discipleship Rhythms</title>
+    
+    <!-- Open Graph / Facebook Meta Tags (FIXED) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://enrichministries.github.io/digital-discipleship-rhythms/" />
+    <meta property="og:title" content="Daily & Weekly Digital Discipleship Rhythms" />
+    <meta property="og:description" content="A practical checklist for Christian parents to guide their children, establish healthy digital boundaries, and build faith at home." />
+    <!-- FIXED: Replaced broken family_image.jpg with a working absolute image URL -->
+    <meta property="og:image" content="famiy_image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+
+    <!-- Twitter Meta Tags (ADDED to fix 'No image' preview) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://enrichministries.github.io/digital-discipleship-rhythms/" />
+    <meta name="twitter:title" content="Daily & Weekly Digital Discipleship Rhythms" />
+    <meta name="twitter:description" content="A practical checklist for Christian parents to guide their children, establish healthy digital boundaries, and build faith at home." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200&h=675&auto=format&fit=crop" />
+
+    <!-- Google Fonts for Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,11 +32,10 @@
             theme: {
                 extend: {
                     colors: {
-                        midnight: '#0B1121',
-                        card: '#151E32',
-                        primary: '#3B82F6',   /* Electric Blue */
-                        secondary: '#F97316', /* Vibrant Orange */
-                        slateText: '#94A3B8'  /* Gray-blue for subtext */
+                        indigoDark: '#0B0E20',
+                        indigoCard: '#151A3A',
+                        electricBlue: '#3B82F6',
+                        vibrantOrange: '#F97316'
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -37,211 +45,205 @@
         }
     </script>
 
-    <!-- Google Fonts for Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS for specific effects -->
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0B1121;
-            color: #F8FAFC;
+            background-color: #0B0E20; /* Deep Midnight Indigo */
+            color: #E2E8F0;
         }
 
-        /* Custom Modern Circular Checkbox Styling */
+        /* Custom Checkbox Styling - Circular modern */
         .task-checkbox {
             appearance: none;
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.05);
             margin: 0;
             font: inherit;
-            width: 1.5rem;
-            height: 1.5rem;
-            border: 2px solid rgba(148, 163, 184, 0.4); /* Slate with opacity */
-            border-radius: 50%; /* Make it perfectly round */
+            color: currentColor;
+            width: 1.5em;
+            height: 1.5em;
+            border: 2px solid #3B82F6; /* Electric Blue */
+            border-radius: 50%; /* Circular */
+            display: grid;
+            place-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: all 0.3s ease-in-out;
             flex-shrink: 0;
         }
 
-        .task-checkbox:hover {
-            border-color: #3B82F6;
+        .task-checkbox::before {
+            content: "";
+            width: 0.7em;
+            height: 0.7em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: white;
         }
 
         .task-checkbox:checked {
             background-color: #3B82F6;
             border-color: #3B82F6;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
         }
 
-        /* Checkmark icon inside the circle */
-        .task-checkbox:checked::after {
-            content: '';
-            position: absolute;
-            left: 32%;
-            top: 18%;
-            width: 0.35rem;
-            height: 0.7rem;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
+        .task-checkbox:checked::before {
+            transform: scale(1);
         }
 
-        /* Strikethrough effect for checked items */
+        /* Strikethrough effect */
         .task-item.completed .task-text {
             text-decoration: line-through;
             opacity: 0.5;
         }
-        
+
         .task-item {
             transition: all 0.3s ease;
         }
 
         .task-item:hover {
             transform: translateX(4px);
+            background-color: rgba(59, 130, 246, 0.1);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen py-10 px-4 sm:px-6 lg:px-8 selection:bg-primary selection:text-white">
+<body class="antialiased min-h-screen py-10 px-4 sm:px-6 lg:px-8 selection:bg-electricBlue selection:text-white">
 
     <div class="max-w-3xl mx-auto space-y-10">
         
         <!-- Header -->
         <header class="text-center space-y-4">
-            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight py-2 leading-tight">
-                Digital Discipleship Rhythms
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white py-2 leading-tight">
+                Digital Discipleship <span class="text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-vibrantOrange">Rhythms</span>
             </h1>
-            <p class="text-slateText text-lg md:text-xl max-w-2xl mx-auto font-light">
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
                 A daily and weekly interactive guide for Christian parents to foster a God-honoring digital environment at home.
             </p>
         </header>
 
-        <!-- Progress Tracker -->
-        <div class="bg-card border border-white/5 rounded-[2rem] p-6 shadow-2xl relative overflow-hidden">
+        <!-- Progress Tracker (Glassmorphic) -->
+        <div class="bg-indigoCard/80 border border-white/10 rounded-[32px] p-8 shadow-2xl backdrop-blur-md relative overflow-hidden">
             <div class="flex justify-between items-end mb-4">
                 <div>
-                    <h2 class="text-white font-semibold text-xl tracking-wide">Journey Tracker</h2>
-                    <p class="text-sm text-slateText mt-1" id="progress-message">Let's build healthy habits today.</p>
+                    <h2 class="text-white font-semibold text-xl">Journey Tracker</h2>
+                    <p class="text-sm text-slate-400 mt-1" id="progress-message">Let's build healthy habits today.</p>
                 </div>
-                <div class="text-3xl font-bold text-primary" id="progress-text">0%</div>
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-electricBlue to-blue-300" id="progress-text">0%</div>
             </div>
             
-            <div class="w-full bg-midnight/80 rounded-full h-3.5 mb-2 relative overflow-hidden">
-                <div id="progress-fill" class="bg-primary h-3.5 rounded-full transition-all duration-500 ease-out w-0 relative">
-                    <!-- Shimmer effect on bar -->
-                    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+            <div class="w-full bg-slate-800 rounded-full h-4 mb-2 relative overflow-hidden">
+                <div id="progress-fill" class="bg-gradient-to-r from-electricBlue to-vibrantOrange h-4 rounded-full transition-all duration-500 ease-out w-0 relative shadow-[0_0_10px_rgba(59,130,246,0.6)]">
                 </div>
             </div>
             
-            <div class="mt-5 flex justify-end">
-                <button id="reset-btn" class="text-xs bg-midnight border border-white/10 text-slateText hover:text-secondary hover:border-secondary px-4 py-2 rounded-xl transition-all duration-200 uppercase font-medium tracking-wider">
+            <div class="mt-6 flex justify-end">
+                <button id="reset-btn" class="text-xs bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors duration-200">
                     ↻ Reset Checklist
                 </button>
             </div>
         </div>
 
         <!-- Checklist Sections -->
-        <div class="space-y-8" id="checklist-container">
+        <div class="space-y-6" id="checklist-container">
             
             <!-- 1. Morning Foundation -->
-            <section class="bg-card border border-white/5 rounded-[2rem] p-5 md:p-7 shadow-xl">
-                <div class="flex items-center gap-4 mb-6 border-b border-white/5 pb-4">
-                    <div class="bg-primary/20 p-2.5 rounded-xl">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <section class="bg-indigoCard/60 border border-white/5 rounded-[32px] p-6 md:p-8 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-electricBlue/20 p-3 rounded-2xl">
+                        <svg class="w-6 h-6 text-electricBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-white">1. Morning Foundation</h2>
+                    <h2 class="text-2xl font-semibold text-white">Morning Foundation</h2>
                 </div>
                 
-                <div class="space-y-3">
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                <div class="space-y-4">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-morning-1" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">Scripture Before Screens</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Keep phones docked until after morning prayer and a short verse together.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Keep phones docked until after morning prayer and a short verse together.</span>
                         </div>
                     </label>
 
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-morning-2" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">The 60-Second Commissioning Prayer</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Lay hands on your children before school, praying Psalm 101:3 and Ephesians 6 over their eyes, ears, and friendships.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Lay hands on your children before school, praying Psalm 101:3 and Ephesians 6 over their eyes, ears, and friendships.</span>
                         </div>
                     </label>
                 </div>
             </section>
 
             <!-- 2. Afternoon & Evening Connection -->
-            <section class="bg-card border border-white/5 rounded-[2rem] p-5 md:p-7 shadow-xl">
-                <div class="flex items-center gap-4 mb-6 border-b border-white/5 pb-4">
-                    <div class="bg-primary/20 p-2.5 rounded-xl">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <section class="bg-indigoCard/60 border border-white/5 rounded-[32px] p-6 md:p-8 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-vibrantOrange/20 p-3 rounded-2xl">
+                        <svg class="w-6 h-6 text-vibrantOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-white">2. Afternoon & Evening Connection</h2>
+                    <h2 class="text-2xl font-semibold text-white">Afternoon & Evening</h2>
                 </div>
                 
-                <div class="space-y-3">
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                <div class="space-y-4">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-aft-1" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">Public Charging & Homework Zone</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Have kids complete online schoolwork or coaching modules in the living/dining room rather than behind closed bedroom doors.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Have kids complete online schoolwork or coaching modules in the living/dining room rather than behind closed bedroom doors.</span>
                         </div>
                     </label>
 
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-aft-2" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
-                            <span class="block text-lg font-medium text-white mb-1">Device-Free Family Dinner & Heart Check-In</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Ask daily: "What was the funniest, weirdest, or hardest thing you saw online or at school today?"</span>
+                            <span class="block text-lg font-medium text-white mb-1">Device-Free Family Dinner</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Ask daily: "What was the funniest, weirdest, or hardest thing you saw online or at school today?"</span>
                         </div>
                     </label>
                     
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-aft-3" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">15-Minute Interactive Family Altar</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Sing a worship chorus together, watch a short BibleProject video, or read one chapter of Proverbs corresponding to today's date.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Sing a worship chorus together, watch a short BibleProject video, or read one chapter of Proverbs corresponding to today's date.</span>
                         </div>
                     </label>
                 </div>
             </section>
 
             <!-- 3. Nightly Protection -->
-            <section class="bg-card border border-white/5 rounded-[2rem] p-5 md:p-7 shadow-xl">
-                <div class="flex items-center gap-4 mb-6 border-b border-white/5 pb-4">
-                    <div class="bg-primary/20 p-2.5 rounded-xl">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <section class="bg-indigoCard/60 border border-white/5 rounded-[32px] p-6 md:p-8 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-electricBlue/20 p-3 rounded-2xl">
+                        <svg class="w-6 h-6 text-electricBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-white">3. Nightly Protection</h2>
+                    <h2 class="text-2xl font-semibold text-white">Nightly Protection</h2>
                 </div>
                 
-                <div class="space-y-3">
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                <div class="space-y-4">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-night-1" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">The 9:00 PM Digital Curfew</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Collect all smartphones, tablets, and laptops to charge overnight in the parents' bedroom to protect sleep and prevent late-night temptation.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Collect all smartphones, tablets, and laptops to charge overnight in the parents' bedroom to protect sleep and prevent late-night temptation.</span>
                         </div>
                     </label>
                 </div>
             </section>
 
             <!-- 4. Weekly Rhythms -->
-            <section class="bg-card border border-white/5 rounded-[2rem] p-5 md:p-7 shadow-xl">
-                <div class="flex items-center gap-4 mb-6 border-b border-white/5 pb-4">
-                    <div class="bg-primary/20 p-2.5 rounded-xl">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <section class="bg-indigoCard/60 border border-white/5 rounded-[32px] p-6 md:p-8 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-vibrantOrange/20 p-3 rounded-2xl">
+                        <svg class="w-6 h-6 text-vibrantOrange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-white">4. Weekly Rhythms</h2>
+                    <h2 class="text-2xl font-semibold text-white">Weekly Rhythms</h2>
                 </div>
                 
-                <div class="space-y-3">
-                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-transparent hover:border-white/5 transition-all">
+                <div class="space-y-4">
+                    <label class="task-item flex items-start gap-4 p-4 rounded-2xl cursor-pointer bg-white/5 hover:bg-white/10 border border-white/5">
                         <input type="checkbox" id="chk-weekly-1" class="task-checkbox mt-1">
                         <div class="task-text flex-1">
                             <span class="block text-lg font-medium text-white mb-1">24-Hour Weekly Digital Sabbath</span>
-                            <span class="block text-sm text-slateText leading-relaxed">Power down non-essential entertainment screens from Saturday evening or Sunday afternoon to focus on church, outdoor play, music, and rest.</span>
+                            <span class="block text-sm text-slate-400 leading-relaxed">Power down non-essential entertainment screens from Saturday evening or Sunday afternoon to focus on church, outdoor play, music, and rest.</span>
                         </div>
                     </label>
                 </div>
@@ -249,12 +251,11 @@
 
         </div>
         
-        <footer class="text-center pt-8 pb-4 text-slateText/60 text-sm">
+        <footer class="text-center pt-8 pb-4 text-slate-500 text-sm font-light">
             Proverbs 4:23 — Above all else, guard your heart, for everything you do flows from it.
         </footer>
     </div>
 
-    <!-- Application Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const checkboxes = document.querySelectorAll('.task-checkbox');
@@ -263,9 +264,8 @@
             const progressMessage = document.getElementById('progress-message');
             const resetBtn = document.getElementById('reset-btn');
             
-            const STORAGE_KEY = 'digital_discipleship_rhythms_state_v2'; // Updated key for fresh state
+            const STORAGE_KEY = 'digital_discipleship_rhythms_state';
 
-            // Custom messages based on progress
             const getProgressMessage = (percent) => {
                 if (percent === 0) return "Let's build healthy habits today.";
                 if (percent < 30) return "A great start to protecting your home.";
@@ -274,7 +274,6 @@
                 return "Incredible! You completed all rhythms.";
             };
 
-            // Toggle CSS classes for checked state visualization
             const toggleItemStyling = (checkbox) => {
                 const container = checkbox.closest('.task-item');
                 if (checkbox.checked) {
@@ -284,20 +283,16 @@
                 }
             };
 
-            // Main update function
             const updateProgress = () => {
                 const total = checkboxes.length;
                 const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
                 const percent = Math.round((checked / total) * 100);
                 
-                // Animate UI
                 progressFill.style.width = `${percent}%`;
                 
-                // Animate text counter
                 let currentVal = parseInt(progressText.innerText);
                 if(isNaN(currentVal)) currentVal = 0;
                 
-                // Basic counter animation
                 const duration = 500;
                 const startTime = performance.now();
                 
@@ -305,7 +300,7 @@
                     const elapsedTime = currentTime - startTime;
                     const progress = Math.min(elapsedTime / duration, 1);
                     
-                    const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                    const easedProgress = 1 - Math.pow(1 - progress, 3);
                     const currentPercent = Math.floor(currentVal + (percent - currentVal) * easedProgress);
                     
                     progressText.innerText = `${currentPercent}%`;
@@ -320,7 +315,6 @@
                 
                 requestAnimationFrame(animateCounter);
 
-                // Save State
                 const state = {};
                 checkboxes.forEach(cb => {
                     state[cb.id] = cb.checked;
@@ -329,7 +323,6 @@
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
             };
 
-            // Initialize State
             const loadState = () => {
                 try {
                     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
@@ -337,9 +330,7 @@
                         if (saved[cb.id]) {
                             cb.checked = true;
                         }
-                        // Add event listener to each box
                         cb.addEventListener('change', updateProgress);
-                        // Initial styling setup
                         toggleItemStyling(cb);
                     });
                 } catch (e) {
@@ -348,10 +339,9 @@
                         cb.addEventListener('change', updateProgress);
                     });
                 }
-                updateProgress(); // Run once to set initial bar state
+                updateProgress();
             };
 
-            // Reset Functionality
             resetBtn.addEventListener('click', () => {
                 checkboxes.forEach(cb => {
                     cb.checked = false;
@@ -359,7 +349,6 @@
                 updateProgress();
             });
 
-            // Start
             loadState();
         });
     </script>
